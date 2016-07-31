@@ -7,16 +7,26 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 
+//Additional dependencies added for browserify and lint
+var jshint = require('gulp-jshint');
+var browserify = require('browserify');
+var vinylSource = require('vinyl-source-stream');
+
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  jsSrc: ['./www/js/**/*.js'],
+  src: ['./wwww/**/*', '!wwww/lib/**/*', '!www/dist/**/*'],
+  appSrc: ['./www/js/app.js'],
+  bundleSrc: ['./www/js/dist/index.js']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['lint', 'browserify']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
-    .on('error', sass.logError)
+    .pipe(sass({
+      errLogToConsole: true
+    }))
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
@@ -26,8 +36,9 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['browserify', 'lint', 'sass'], function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.jsSrc, ['browserify', 'lint']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -48,4 +59,20 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+// JSHint task
+gulp.task('lint', function() {
+  gulp.src(['./www/js/**/*.js'])
+  .pipe(jshint())
+  // You can look into pretty reporters as well, but that's another story
+  .pipe(jshint.reporter('default'))
+  .pipe(jshint.reporter('fail'));
+});
+
+gulp.task('browserify', function() {
+  return browserify('./www/js/app.js', {debug: true})
+    .bundle()
+    .pipe(vinylSource('index.js'))
+    .pipe(gulp.dest('./www/dist'));
 });
