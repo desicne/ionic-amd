@@ -1,5 +1,6 @@
 'use strict';
 
+require('angular');
 require('ionic');
 
 require('./base/base');

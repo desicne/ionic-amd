@@ -3,7 +3,7 @@
 module.exports = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$provide', '$ionicConfigProvider',
   function($stateProvider, $urlRouterProvider, $httpProvider, $provide, $ionicConfigProvider) {
 
-    $ionicConfigProvider.backButton.text('').icon('icon-back-cathod').previousTitleText(false);
+    $ionicConfigProvider.backButton.text('').icon('icon-back').previousTitleText(false);
     $ionicConfigProvider.views.maxCache(4);
     $ionicConfigProvider.views.forwardCache(0);
     $ionicConfigProvider.tabs.position('bottom');
@@ -45,7 +45,7 @@ module.exports = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$pro
             controller: 'SettingsController'
           }
         }
-      })
+      });
 
   }
 ];

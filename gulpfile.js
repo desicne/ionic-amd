@@ -14,7 +14,7 @@ var vinylSource = require('vinyl-source-stream');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  jsSrc: ['./www/js/**/*.js'],
+  jsSrc: ['./www/js/*.js'],
   src: ['./wwww/**/*', '!wwww/lib/**/*', '!www/dist/**/*'],
   appSrc: ['./www/js/app.js'],
   bundleSrc: ['./www/js/dist/index.js']
@@ -36,9 +36,10 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', ['browserify', 'lint', 'sass'], function() {
+gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.jsSrc, ['browserify', 'lint']);
+  gulp.watch(paths.jsSrc, ['browserify']);
+  gulp.watch(paths.jsSrc, ['lint']);
 });
 
 gulp.task('install', ['git-check'], function() {
