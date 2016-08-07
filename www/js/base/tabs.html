@@ -1,0 +1,38 @@
+<ion-nav-bar class="header-style">
+</ion-nav-bar>
+
+<ion-nav-view name="menuContent"></ion-nav-view>
+
+<ion-view>
+  <ion-tabs class="tabs-light tabs-icon-top" style="border-top: 0px">
+
+    <ion-tab title="Feed" icon-on="home" icon-off="home-off" ui-sref="tabs.feed">
+      <ion-nav-view name="feed"></ion-nav-view>
+    </ion-tab>
+    
+    <ion-tab title="Profile" icon-on="person" icon-off="person-off" ui-sref="tabs.profile">
+      <ion-nav-view name="profile"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Settings" icon-on="settings" icon-off="settings-off" ui-sred="tabs.settings">
+      <ion-nav-view name="settings"></ion-nav-view>
+    </ion-tab>
+    
+    <!-- custom tabs implementation
+    
+    <a class="tab-item custom" ng-class="{'tab-item-active': isActive('tabs.nameOfRoute')}" href="#/tab/nameOfFolder">
+      <i class="icon name{{isActive('tabs.nameOfRoute') ? '' : '-off'}}"></i>
+      <span class="tab-title">Title Name</span>
+    </a>
+    <a class="tab-item custom" ng-class="{'tab-item-active': isActive('tabs.nameOfRoute')}" ng-click="goToSearch()">
+      <i class="icon name{{isActive('tabs.nameOfRoute') ? '' : '-off'}}"></i>
+        <span class="tab-title">Title Name</span>
+    </a>
+    <a class="tab-item custom" ng-class="{'tab-item-active': isActive('tabs.nameOfRoute')}" ng-click="goToLibrary()">
+      <i class="icon name{{isActive('tabs.nameOfRoute') ? '' : '-off'}}"></i>
+        <span class="tab-title">Title Name</span>
+    </a>
+
+    -->
+  </ion-tabs>
+</ion-view>

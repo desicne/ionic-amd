@@ -21,18 +21,8 @@ module.exports = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$pro
         url: '/feed',
         views: {
           'feed': {
-            templateUrl: 'discover/discover.html',
+            templateUrl: 'feed/feed.html',
             controller: 'FeedController'
-          }
-        }
-      })
-
-      .state('tabs.inbox', {
-        url: '/inbox',
-        views: {
-          'inbox': {
-            templateUrl: 'inbox/inbox.html',
-            controller: 'InboxController'
           }
         }
       })
@@ -43,6 +33,16 @@ module.exports = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$pro
           'profile': {
             templateUrl: 'profile/profile.html',
             controller: 'ProfileController',
+          }
+        }
+      })
+
+      .state('tabs.settings', {
+        url: '/settings',
+        views: {
+          'settings': {
+            templateUrl: 'settings/settings.html',
+            controller: 'SettingsController'
           }
         }
       })
